@@ -35,25 +35,6 @@ export class InputModel {
   }
 
   private isVisisble: boolean = false
-  private settings_container: HTMLDivElement
-  private resolution_scale_input: HTMLInputElement
-
-  constructor() {
-    this.settings_container = document.querySelector(
-      '#settings'
-    ) as HTMLDivElement
-    ;(document.querySelector(
-      '#btn-show-settings'
-    ) as HTMLButtonElement).addEventListener('click', this.onClick.bind(this))
-
-    this.resolution_scale_input = document.querySelector(
-      '#resolution-scale'
-    ) as HTMLInputElement
-    this.resolution_scale_input.addEventListener(
-      'change',
-      this.onChange.bind(this)
-    )
-  }
 
   update(time: Time) {
     const s = Math.sin(this.rotation)
@@ -147,16 +128,5 @@ export class InputModel {
 
   resetZoom() {
     this.scale = this.SCALE_DEFAULT
-  }
-
-  private onClick(event: MouseEvent) {
-    if (!this.isVisisble) this.settings_container.classList.remove('hide')
-    else this.settings_container.classList.add('hide')
-
-    this.isVisisble = !this.isVisisble
-  }
-
-  private onChange(event: Event) {
-    this.resolution = parseFloat(this.resolution_scale_input.value)
   }
 }

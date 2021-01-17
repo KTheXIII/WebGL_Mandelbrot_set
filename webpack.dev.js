@@ -35,6 +35,16 @@ const modules = {
       ],
     },
     {
+      test: /\.svelte$/,
+      use: {
+        loader: 'svelte-loader',
+        options: {
+          // emitCss: true,
+          // preprocess: sveltePreprocess({}),
+        },
+      },
+    },
+    {
       test: /\.(png|jpg|gif|svg)$/,
       use: [
         {
@@ -71,14 +81,16 @@ const modules = {
 }
 
 const resolve = {
-  extensions: ['.ts', '.js'],
+  extensions: ['.ts', '.js', '.mjs', '.svelte'],
   alias: {
     src: path.resolve(__dirname, 'src'),
     Assets: path.resolve(__dirname, 'src/Assets'),
     DOM: path.resolve(__dirname, 'src/DOM'),
     Engine: path.resolve(__dirname, 'src/Engine'),
     Sandbox: path.resolve(__dirname, 'src/Sandbox'),
+    svelte: path.resolve('node_modules', 'svelte'),
   },
+  mainFields: ['svelte', 'browser', 'module', 'main'],
 }
 
 // Plugins
